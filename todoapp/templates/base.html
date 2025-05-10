@@ -1,21 +1,36 @@
 <!DOCTYPE html>
+{% load static %}
+{% load taskinfo %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+            <a href="{% url 'userapp:logout' %}" class="nav-link">Logout</a>
+            <a href="{% url 'todoapp:create_task' %}" class="nav-link">Create Task</a>
+            {% else %}
+            <a href="{% url 'userapp:login' %}" class="nav-link">Login</a>
+            <a href="{% url 'userapp:registration' %}" class="nav-link">Register</a>
+            {% endif %}
+            <a href="{% url 'todoapp:home' %}" class="nav-link">Home</a>
+        </div>
         {% if user.is_authenticated %}
-        <a href="{% url "userapp:logout" %}">logout</a>
-        <a href="{% url "todoapp:create_task" %}">create task</a>
-        {% else %}
-        <a href="{% url "userapp:login" %}">login</a>
-        <a href="{% url "userapp:registration" %}">create account</a>
+        <div class="task-stats">
+            <span>Total: {% total_tasks user %}</span>
+            <span>Done: {% total_done user %}</span>
+            <span>Undone: {% total_undone user %}</span>
+            <span>In Progress: {% total_in_progress user %}</span>
+        </div>
         {% endif %}
-        <a href="{% url "todoapp:home" %}">main</a>
     </nav>
-    {% block content %}{% endblock content %}
+    <main class="container">
+        {% block content %}{% endblock content %}
+    </main>
 </body>
 </html>

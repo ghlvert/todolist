@@ -37,3 +37,7 @@ def create_task(request):
     else:
         form = TaskForm()
     return render(request, 'todoapp/create_task.html', {'form': form})
+
+def delete_task(request, task_id):
+    Task.objects.filter(id=task_id).delete()
+    return redirect("todoapp:home")

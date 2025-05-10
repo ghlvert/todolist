@@ -1,9 +1,31 @@
 {% extends "base.html" %}
 {% block title %}{{task.title}}{% endblock title %}
+
 {% block content %}
-    <form action="" method='POST'>
+
+<div class="task-detail-container">
+    <h1 class="task-detail-title">{{ task.title }}</h1>
+    
+    <div class="task-meta">
+        <span class="task-state state-{{ task.state|slugify }}">{{ task.state }}</span>
+        <span class="task-date">Created: {{ task.created|date:"M d, Y H:i" }}</span>
+        <span class="task-date">Updated: {{ task.updated|date:"M d, Y H:i" }}</span>
+    </div>
+
+    <div class="task-content">
+        <p class="task-text">{{ task.text }}</p>
+    </div>
+
+    <form class="task-edit-form" action="" method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value='change'>
+        <div class="form-fields">
+            {{ form.as_p }}
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="submit-btn" value="Save Changes">
+            <a href="{% url "todoapp:delete_task" task.id %}" class="submit-btn">Delete</a>
+            <a href="{{ task.get_absolute_url }}" class="cancel-btn">Cancel</a>
+        </div>
     </form>
+</div>
 {% endblock content %}

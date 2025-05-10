@@ -1,16 +1,31 @@
 {% extends "base.html" %}
 {% block title %}Main page{% endblock title %}
 {% block content %}
-{% if not user.is_authenticated %}
-<h2>Please login to continue <a href="{% url "userapp:login" %}">login</a></h2>
-{% else %}
-{% for task in tasks %}
-   <a href="{{task.get_absolute_url}}"><p>{{task.title}}</a> {{task.state}}</p>
-   <p>{{task.text|truncatechars:200}}</p>
-   <p>updated on {{task.updated}} created on {{task.created}}</p>
-
-{% empty %}
-    <h4>no tasks yet. <a href="{% url "todoapp:create_task" %}">create a new one?</a></h4>
-{% endfor %}
-{% endif %}
+<div class="task-container">
+    {% if not user.is_authenticated %}
+        <div class="auth-message">
+            <h2>Please <a href="{% url 'userapp:login' %}">login</a> or <a href="{% url 'userapp:registration' %}">create account</a> to continue</h2>
+        </div>
+    {% else %}
+        <div class="task-list">
+            {% for task in tasks %}
+                <a href="{{ task.get_absolute_url }}"><div class="task-item">
+                    <h3 class="task-title">
+                        <a href="{{ task.get_absolute_url }}">{{ task.title }}</a>
+                        <span class="task-state state-{{ task.state|slugify }}">{{ task.state }}</span>
+                    </h3>
+                    <p class="task-text">{{ task.text|truncatechars:200 }}</p>
+                    <p class="task-dates">
+                        Updated on {{ task.updated|date:"M d, Y H:i" }} | 
+                        Created on {{ task.created|date:"M d, Y H:i" }}
+                    </p>
+                </div></a>
+            {% empty %}
+                <div class="empty-tasks">
+                    <h4>No tasks yet. <a href="{% url 'todoapp:create_task' %}">Create a new one?</a></h4>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 {% endblock content %}
