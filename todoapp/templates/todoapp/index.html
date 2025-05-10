@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Main page{% endblock title %}
+{% block content %}
+{% if not user.is_authenticated %}
+<h2>Please login to continue <a href="">login</a></h2>
+{% else %}
+{% for task in tasks %}
+   <a href="{{task.get_absolute_url}}"><p>{{task.title}}</a> {{task.state}}</p>
+   <p>{{task.text|truncatechars:200}}</p>
+   <p>updated on {{task.updated}} created on {{task.created}}</p>
+
+{% empty %}
+    <h4>no tasks yet. <a href="">create a new one?</a></h4>
+{% endfor %}
+{% endif %}
+{% endblock content %}
