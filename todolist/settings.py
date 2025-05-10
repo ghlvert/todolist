@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import LOGOUT_REDIRECT_URL
+from django.urls import reverse
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +29,8 @@ SECRET_KEY = 'django-insecure-aa%t_gcz)9ccm0$09p-sbx3^6&=c)y=a6$q1p5k2=_ya-vycr)
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = "todoapp:home"
+LOGOUT_REDIRECT_URL = "todoapp:home"
 
 # Application definition
 
