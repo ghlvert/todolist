@@ -8,15 +8,15 @@ def total_tasks(user):
 
 @register.simple_tag
 def total_done(user):
-    return f'{user.tasks.filter(state='Done').count()} total tasks done'
+    return f'{user.tasks.filter(state='Done').count()} tasks done'
 
 @register.simple_tag
 def total_undone(user):
-    return f'{user.tasks.filter(state='Undone').count()} total tasks undone'
+    return f'{user.tasks.filter(state='Undone').count()} tasks undone'
 
 @register.simple_tag
 def total_in_progress(user):
-    return f'{user.tasks.filter(state='In progress').count()} total tasks in porgress'
+    return f'{user.tasks.filter(state='In progress').count()} tasks in porgress'
 
 # @register.simple_tag
 # def latest_created_tasks(user):

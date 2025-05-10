@@ -21,13 +21,13 @@
             <a href="{% url 'todoapp:home' %}" class="nav-link">Home</a>
         </div>
         {% if user.is_authenticated %}
-        <div class="task-stats">
-            <span>Total: {% total_tasks user %}</span>
-            <span>Done: {% total_done user %}</span>
-            <span>Undone: {% total_undone user %}</span>
-            <span>In Progress: {% total_in_progress user %}</span>
-        </div>
-        {% endif %}
+<div class="task-stats">
+    <span title="Tasks in progress">{% total_in_progress user %}</span>  <!-- Теперь первый -->
+    <span title="Completed tasks">{% total_done user %}</span>
+    <span title="Pending tasks">{% total_undone user %}</span>
+    <span title="Total tasks">{% total_tasks user %}</span>  <!-- Теперь последний -->
+</div>
+{% endif %}
     </nav>
     <main class="container">
         {% block content %}{% endblock content %}

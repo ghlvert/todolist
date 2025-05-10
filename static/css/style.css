@@ -34,74 +34,33 @@ body {
     color: #aad1f0;
 }
 
-/* Статистика задач */
-.task-stats {
-    display: flex;
-    gap: 1.5rem;
-    color: white;
-    font-size: 0.9rem;
-}
-
-.task-stats span {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-}
-
-/* Основной контент */
-.container, .task-container, .task-detail-container, .create-task-container {
+/* Контейнеры */
+.container, 
+.task-container, 
+.task-detail-container, 
+.create-task-container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
-.task-container, .task-detail-container, .create-task-container {
+.task-container, 
+.task-detail-container, 
+.create-task-container {
     max-width: 800px;
 }
 
-.task-detail-container, .create-task-container {
+.task-detail-container, 
+.create-task-container {
     padding: 2rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .nav-links, .task-stats {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .task-detail-container, .create-task-container {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-    
-    .task-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    
-    .submit-btn, .cancel-btn {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-.auth-message, .empty-tasks {
+/* Сообщения */
+.auth-message, 
+.empty-tasks {
     text-align: center;
     margin: 3rem 0;
     font-size: 1.1rem;
@@ -112,16 +71,19 @@ body {
     font-size: 1.2rem;
 }
 
-.auth-message a, .empty-tasks a {
+.auth-message a, 
+.empty-tasks a {
     color: #4b6cb7;
     text-decoration: none;
     font-weight: bold;
 }
 
-.auth-message a:hover, .empty-tasks a:hover {
+.auth-message a:hover, 
+.empty-tasks a:hover {
     text-decoration: underline;
 }
 
+/* Задачи */
 .task-list {
     display: flex;
     flex-direction: column;
@@ -187,7 +149,8 @@ body {
     white-space: pre-wrap;
 }
 
-.task-dates, .task-date {
+.task-dates, 
+.task-date {
     font-size: 0.9rem;
     color: #777;
     margin-top: 0.5rem;
@@ -205,8 +168,9 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Form Styles */
-.task-edit-form, .task-create-form {
+/* Формы */
+.task-edit-form, 
+.task-create-form {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid #eee;
@@ -299,25 +263,7 @@ body {
     font-size: 1.8rem;
 }
 
-/* Style for select dropdown */
-.form-fields select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
-    background-size: 1rem;
-}
-
-/* Form error messages */
-.errorlist {
-    color: #e74c3c;
-    margin-top: 0.3rem;
-    font-size: 0.85rem;
-    list-style-type: none;
-    padding-left: 0;
-}
-
-/* Auth Styles */
+/* Аутентификация */
 :root {
     --primary-color: #4b6cb7;
     --secondary-color: #182848;
@@ -481,13 +427,118 @@ body {
     transition: width 0.3s;
 }
 
-/* Animations */
+/* Статистика задач */
+.task-stats {
+    display: flex;
+    gap: 1rem;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.task-stats span {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.task-stats span::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.task-stats span:nth-child(1) {
+    color: #FFA500;
+    border: 2px solid #FFA500;
+}
+
+.task-stats span:nth-child(1)::before {
+    background-color: #FFA500;
+}
+
+.task-stats span:nth-child(2) {
+    color: #00AA00;
+    border: 2px solid #00AA00;
+}
+
+.task-stats span:nth-child(2)::before {
+    background-color: #00AA00;
+}
+
+.task-stats span:nth-child(3) {
+    color: #FF3333;
+    border: 2px solid #FF3333;
+}
+
+.task-stats span:nth-child(3)::before {
+    background-color: #FF3333;
+}
+
+.task-stats span:nth-child(4) {
+    color: #3366FF;
+    border: 2px solid #3366FF;
+}
+
+.task-stats span:nth-child(4)::before {
+    background-color: #3366FF;
+}
+
+.task-stats span:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Анимации */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Design for Auth */
+/* Адаптивность */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .nav-links, 
+    .task-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .task-detail-container, 
+    .create-task-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .task-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .submit-btn, 
+    .cancel-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 @media (max-width: 576px) {
     .auth-card {
         padding: 30px 20px;
