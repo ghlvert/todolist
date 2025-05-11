@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from todoapp.views import index, detail_task, create_task, delete_task
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('task/<int:task_id>', detail_task, name='detail_task'),
     path('create/', create_task, name='create_task'),
     path('delete/<int:task_id>', delete_task, name='delete_task'),
+    path('api/', include('todoapp.api.urls')),
 ]
